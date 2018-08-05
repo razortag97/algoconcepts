@@ -11,6 +11,7 @@ public class Solution {
 	
 	public void helperC(String s, String cs, ArrayList<String> sols) {
 		if(s.isEmpty()) {
+			System.out.println(cs);
 			sols.add(cs);
 		}else {
 			for(int i=0;i<s.length();i++) {
@@ -18,7 +19,8 @@ public class Solution {
 				cs = cs + ch;
 				s = s.substring(0, i) + s.substring(i+1, s.length()-1);
 				helperC(s,cs,sols);
-				
+				cs = cs.substring(0, i);
+				s = s.substring(0, i) + ch + s.substring(i+1, s.length()-1);
 			}
 		}
 	}
