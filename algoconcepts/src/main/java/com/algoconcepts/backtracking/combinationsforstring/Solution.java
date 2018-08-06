@@ -1,26 +1,32 @@
 package com.algoconcepts.backtracking.combinationsforstring;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Solution {
 
-	public void computeC(String s) {
+	public ArrayList<String> computeC(String os) {
 		ArrayList<String> sols = new ArrayList<String>();
-		helperC(s, "", sols);
+		helperC(os, "", sols);
+		return sols;
 	}
 	
-	public void helperC(String s, String cs, ArrayList<String> sols) {
-		if(s.isEmpty()) {
-			System.out.println(cs);
+	public void helperC(String os, String cs, ArrayList<String> sols) {
+		System.out.println(cs);
+		if(os.isEmpty()) {
+			System.out.println("------ SOLUTION ------");
+			System.out.println("\t\t" + cs);
+			System.out.println("------ SOLUTION ------");
 			sols.add(cs);
 		}else {
-			for(int i=0;i<s.length();i++) {
-				char ch = s.charAt(i);
+			for(int i=0;i<os.length();i++) {
+				char ch = os.charAt(i);
 				cs = cs + ch;
-				s = s.substring(0, i) + s.substring(i+1, s.length()-1);
-				helperC(s,cs,sols);
-				cs = cs.substring(0, i);
-				s = s.substring(0, i) + ch + s.substring(i+1, s.length()-1);
+				os = os.substring(0, i) + os.substring(i+1, os.length());
+				helperC(os,cs,sols);
+				cs = cs.substring(0, cs.length()-1);
+				os = ch + os;
+				
 			}
 		}
 	}
@@ -29,8 +35,11 @@ public class Solution {
 	public static void main(String[] args) {
 		Solution s1 = new Solution();
 		String s = "ABCD";
-		s1.computeC(s);
-
+		List<String> sol = s1.computeC(s);
+		for (String s2 : sol) {
+			System.out.println(s2);
+		}
+		System.out.println(sol.size());
 	}
 
 }
