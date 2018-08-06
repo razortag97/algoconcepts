@@ -25,6 +25,7 @@ public class Solution {
 		}
 	}
 	
+	
 	public static void main(String[] args) {
 		Solution s1 = new Solution();
 		String s = "ABCD";
